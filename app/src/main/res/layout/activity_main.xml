@@ -78,6 +78,7 @@
         android:background="@drawable/gradient"
         android:fontFamily="@font/acme"
         android:text="Start New Survey"
+        android:onClick="newSurvey"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="25sp"
