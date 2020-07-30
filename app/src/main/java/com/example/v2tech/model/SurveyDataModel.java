@@ -3,7 +3,9 @@ package com.example.v2tech.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SurveyDataModel {
+import java.io.Serializable;
+
+public class SurveyDataModel implements Serializable {
     @SerializedName("question")
     @Expose
     private String question;

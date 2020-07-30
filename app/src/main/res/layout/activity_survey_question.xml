@@ -18,13 +18,38 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_works"
+            android:id="@+id/toolbarNewSurvey"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:background="@color/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Start\nAgain"
+                android:onClick="startAgainSurvey"
+                android:layout_marginEnd="16dp"
+                android:layout_gravity="end"
+                android:gravity="center" />
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0%"
+        app:layout_constraintStart_toStartOf="@+id/surveyProgressBar"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_genDetails" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100%"
+        app:layout_constraintEnd_toEndOf="@+id/surveyProgressBar"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_genDetails" />
 
 
     <ProgressBar
@@ -42,11 +67,12 @@
         app:layout_constraintTop_toBottomOf="@+id/appbar_genDetails" />
 
     <FrameLayout
+        android:id="@+id/surveyContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/prevBtn"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/surveyProgressBar" />
@@ -54,36 +80,20 @@
 
     <Button
         android:id="@+id/nextBtn"
-        android:layout_width="120dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/gradient_next_btn"
         android:fontFamily="@font/acme"
-        android:text="Next"
         android:onClick="nextSurveyQues"
+        android:text="Continue"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/prevBtn" />
-
-
-    <Button
-        android:id="@+id/prevBtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/gradient_prev_btn"
-        android:fontFamily="@font/acme"
-        android:text="Previous"
-        android:onClick="prevSurvey"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nextBtn"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

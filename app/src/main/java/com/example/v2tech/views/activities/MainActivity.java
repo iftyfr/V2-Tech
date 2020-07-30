@@ -19,4 +19,8 @@ public class MainActivity extends AppCompatActivity {
     public void newSurvey(View view) {
         startActivity(new Intent(this,SurveyQuestionActivity.class));
     }
+
+    public void surveyHistory(View view) {
+        startActivity(new Intent(this,SurveyHistoryActivity.class));
+    }
 }

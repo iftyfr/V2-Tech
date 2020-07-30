@@ -5,7 +5,9 @@ import com.example.v2tech.intefaces.OnSurveyDataView;
 import com.example.v2tech.model.InvokeSurveyDataApi;
 import com.example.v2tech.model.SurveyDataModel;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class SurveyDataPresenter {
     private OnSurveyDataView onSurveyDataView;
@@ -13,13 +15,13 @@ public class SurveyDataPresenter {
     public SurveyDataPresenter(OnSurveyDataView onSurveyDataView) {
         this.onSurveyDataView = onSurveyDataView;
     }
-    public void getSurveyData(){
+    public void getSurveyData(String date){
         onSurveyDataView.onSurveyStartLoading();
-        new InvokeSurveyDataApi(new OnRequestComplete() {
+        new InvokeSurveyDataApi(date,new OnRequestComplete() {
             @Override
             public void onRequestSuccess(Object obj) {
                 onSurveyDataView.onSurveyStopLoading();
-                onSurveyDataView.onSurveyData((SurveyDataModel) obj);
+                onSurveyDataView.onSurveyData((List<SurveyDataModel>) obj);
             }
 
             @Override

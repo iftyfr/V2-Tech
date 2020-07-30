@@ -10,42 +10,43 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.v2tech.R;
+import com.example.v2tech.intefaces.OnSurveyCheckListener;
+import com.example.v2tech.model.SurveyDataModel;
 
 import java.util.List;
 
 public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.CheckboxViewHolder> {
 
     private Context context;
-    private List<SearchCategoryModel> searchCategoryList;
-    private OnCategoryCheckListener onCategoryCheckListener;
+    private List<String> checboxItemList;
+    private OnSurveyCheckListener onSurveyCheckListener;
 
-    public CheckboxAdapter(Context context, List<SearchCategoryModel> searchCategoryList, OnCategoryCheckListener onCategoryCheckListener) {
+    public CheckboxAdapter(Context context, List<String> checboxItemList, OnSurveyCheckListener onSurveyCheckListener) {
         this.context = context;
-        this.searchCategoryList = searchCategoryList;
-        this.onCategoryCheckListener = onCategoryCheckListener;
+        this.checboxItemList = checboxItemList;
+        this.onSurveyCheckListener = onSurveyCheckListener;
     }
 
     @NonNull
     @Override
     public CheckboxViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_checkbox_item,parent,false);
-        return new SearchCategoryViewHolder(view);
+        return new CheckboxViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CheckboxViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CheckboxViewHolder holder, final int position) {
 
-        SearchCategoryModel searchCategoryModel = searchCategoryList.get(position);
-        holder.categoryCheckBox.setText(searchCategoryModel.getTitle());
+        holder.surveyCheckBox.setText(checboxItemList.get(position));
 
-        holder.categoryCheckBox.setOnClickListener(new View.OnClickListener() {
+        holder.surveyCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.categoryCheckBox.isChecked()){
-                    onCategoryCheckListener.onItemCheck(searchCategoryModel);
+                if (holder.surveyCheckBox.isChecked()){
+                    onSurveyCheckListener.onItemCheck(checboxItemList.get(position));
                     //holder.categoryCheckBox.setChecked(false);
                 }else {
-                    onCategoryCheckListener.onItemUncheck(searchCategoryModel);
+                    onSurveyCheckListener.onItemUncheck(checboxItemList.get(position));
                     //holder.categoryCheckBox.setChecked(true);
                 }
 
@@ -55,16 +56,16 @@ public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.Checkb
 
     @Override
     public int getItemCount() {
-        return searchCategoryList.size();
+        return checboxItemList.size();
     }
 
     public class CheckboxViewHolder extends RecyclerView.ViewHolder {
 
-        private CheckBox categoryCheckBox;
+        private CheckBox surveyCheckBox;
 
         public CheckboxViewHolder(@NonNull View itemView) {
             super(itemView);
-            categoryCheckBox = itemView.findViewById(R.id.categoryCheckBox);
+            surveyCheckBox = itemView.findViewById(R.id.surveyCheckBox);
         }
     }
 }
